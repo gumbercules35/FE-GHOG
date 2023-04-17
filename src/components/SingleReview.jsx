@@ -8,6 +8,18 @@ export default function SingleReview() {
   const [activeReview, setActiveReview] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
+  const [activeVotes, setActiveVotes] = useState(null);
+
+  const voteHandler = (increment) => {
+    setActiveVotes((currentVotes) => {
+      return currentVotes + increment;
+    });
+    api.patchReviewVotes(review_id, increment).catch(() => {
+      setActiveVotes((currentVotes) => {
+        return currentVotes - increment;
+      });
+    });
+  };
 
   useEffect(() => {
     setOccurredError(false);
@@ -16,6 +28,7 @@ export default function SingleReview() {
       .getReviewById(review_id)
       .then((review) => {
         setActiveReview(review);
+        setActiveVotes(review.votes);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -38,6 +51,26 @@ export default function SingleReview() {
       <h3>A review by: {activeReview.owner}</h3>
 
       <p id="ReviewBody">{activeReview.review_body}</p>
+      <section id="VotingButtonBar">
+        <button
+          type="button"
+          onClick={() => {
+            voteHandler(1);
+          }}
+        >
+          Love it!
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            voteHandler(-1);
+          }}
+        >
+          Boooo!
+        </button>
+        <p>Votes:{activeVotes}</p>
+      </section>
+
       <CommentList review_id={activeReview.review_id} />
     </main>
   );

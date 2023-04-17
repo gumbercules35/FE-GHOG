@@ -19,3 +19,7 @@ export const getComments = (review_id) => {
     return data.comments;
   });
 };
+
+export const patchReviewVotes = (review_id, increment) => {
+  return hogAPI.patch(`/reviews/${review_id}`, { inc_votes: increment });
+};
