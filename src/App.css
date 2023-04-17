@@ -70,3 +70,7 @@ img {
 .SingleReviewList {
   font-style: oblique;
 }
+
+#ReviewBody {
+  text-align: left;
+}
