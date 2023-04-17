@@ -10,7 +10,6 @@ export default function SingleReview() {
   const [occurredError, setOccurredError] = useState(false);
   const [activeVotes, setActiveVotes] = useState(null);
   const [hasVoted, setHasVoted] = useState({ up: false, down: false });
-  console.log("🚀 ~ file: SingleReview.jsx:13 ~ hasVoted:", hasVoted);
 
   const voteHandler = (increment) => {
     setActiveVotes((currentVotes) => {
