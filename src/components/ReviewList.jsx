@@ -16,13 +16,13 @@ export default function ReviewList() {
   return isLoading ? (
     <p>Loading!</p>
   ) : (
-    <div className="Content">
+    <main className="Content">
       <h2>Review List</h2>
       <ul id="reviewList">
         {reviewList.map((review) => {
           return <ReviewCard key={review.review_id} {...review} />;
         })}
       </ul>
-    </div>
+    </main>
   );
 }
