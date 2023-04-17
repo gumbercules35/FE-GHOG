@@ -74,3 +74,36 @@ img {
 #ReviewBody {
   text-align: left;
 }
+.CommentCard {
+  border: 2px solid green;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: smaller;
+}
+
+#CommentHeader {
+  flex: 25%;
+  display: flex;
+
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-evenly;
+  padding: 2px;
+}
+#CommentHeader p {
+  font-size: smaller;
+}
+#CommentBody {
+  flex: 50%;
+  font-size: smaller;
+  padding: 2px;
+}
+
+@media (min-width: 700px) {
+  .CommentCard,
+  #CommentBody {
+    font-size: large;
+    padding: 10px;
+  }
+}

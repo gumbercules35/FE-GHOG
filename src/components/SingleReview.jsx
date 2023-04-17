@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import * as api from "../api";
 import { useEffect, useState } from "react";
+import CommentList from "./CommentList";
 
 export default function SingleReview() {
   const { review_id } = useParams();
@@ -37,6 +38,7 @@ export default function SingleReview() {
       <h3>A review by: {activeReview.owner}</h3>
 
       <p id="ReviewBody">{activeReview.review_body}</p>
+      <CommentList review_id={activeReview.review_id} />
     </main>
   );
 }
