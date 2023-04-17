@@ -18,13 +18,11 @@ img {
 }
 
 .Header {
-  grid-area: header;
   border: 2px solid red;
   align-self: center;
 }
 
 .Nav {
-  grid-area: nav;
   border: 2px solid orange;
   align-self: center;
 }
