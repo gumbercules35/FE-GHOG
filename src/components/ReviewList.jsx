@@ -5,7 +5,6 @@ import ReviewCard from "./ReviewCard";
 export default function ReviewList() {
   const [reviewList, setReviewList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("🚀 ~ file: ReviewList.jsx:7 ~ reviewList:", reviewList);
 
   useEffect(() => {
     setIsLoading(true);
