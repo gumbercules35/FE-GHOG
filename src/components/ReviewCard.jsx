@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function ReviewCard({
   owner,
   title,
@@ -5,11 +6,15 @@ export default function ReviewCard({
   review_img_url,
   votes,
   comment_count,
+  review_id,
 }) {
   return (
     <div className="ReviewCard">
-      <h3>{title}</h3>
-      <img src={review_img_url} alt="reviewimg" />
+      <Link to={`/reviews/${review_id}`}>
+        <h3>{title}</h3>
+        <img src={review_img_url} alt="reviewimg" />
+      </Link>
+
       <ul>
         <li>Category: {category}</li>
         <li>Author: {owner}</li>

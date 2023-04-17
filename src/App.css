@@ -33,6 +33,10 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: small;
+}
+.Content h3 {
+  font-size: small;
 }
 .ReviewCard {
   border: 2px solid green;
@@ -51,4 +55,18 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+.SingleReview {
+  margin: 10px;
+  padding: 5px;
+  border: 2px solid orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 10px;
+}
+.SingleReviewList {
+  font-style: oblique;
 }
