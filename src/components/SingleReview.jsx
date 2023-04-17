@@ -8,6 +8,20 @@ export default function SingleReview() {
   const [activeReview, setActiveReview] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
+  const [activeVotes, setActiveVotes] = useState(null);
+  const [hasVoted, setHasVoted] = useState({ up: false, down: false });
+  console.log("🚀 ~ file: SingleReview.jsx:13 ~ hasVoted:", hasVoted);
+
+  const voteHandler = (increment) => {
+    setActiveVotes((currentVotes) => {
+      return currentVotes + increment;
+    });
+    api.patchReviewVotes(review_id, increment).catch(() => {
+      setActiveVotes((currentVotes) => {
+        return currentVotes - increment;
+      });
+    });
+  };
 
   useEffect(() => {
     setOccurredError(false);
@@ -16,10 +30,12 @@ export default function SingleReview() {
       .getReviewById(review_id)
       .then((review) => {
         setActiveReview(review);
+        setActiveVotes(review.votes);
         setIsLoading(false);
       })
       .catch((err) => {
         setOccurredError(true);
+        setHasVoted({ up: false, down: false });
       });
   }, [review_id]);
   return occurredError ? (
@@ -38,6 +54,30 @@ export default function SingleReview() {
       <h3>A review by: {activeReview.owner}</h3>
 
       <p id="ReviewBody">{activeReview.review_body}</p>
+      <section id="VotingButtonBar">
+        <button
+          type="button"
+          onClick={() => {
+            setHasVoted({ up: true, down: false });
+            voteHandler(1);
+          }}
+          disabled={hasVoted.up}
+        >
+          Love it!
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setHasVoted({ up: false, down: true });
+            voteHandler(-1);
+          }}
+          disabled={hasVoted.down}
+        >
+          Boooo!
+        </button>
+        <p>Votes:{activeVotes}</p>
+      </section>
+
       <CommentList review_id={activeReview.review_id} />
     </main>
   );
