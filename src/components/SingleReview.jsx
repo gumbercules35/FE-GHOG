@@ -35,6 +35,7 @@ export default function SingleReview() {
       })
       .catch((err) => {
         setOccurredError(true);
+        setHasVoted({ up: false, down: false });
       });
   }, [review_id]);
   return occurredError ? (
