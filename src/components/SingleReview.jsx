@@ -9,6 +9,8 @@ export default function SingleReview() {
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
   const [activeVotes, setActiveVotes] = useState(null);
+  const [hasVoted, setHasVoted] = useState({ up: false, down: false });
+  console.log("🚀 ~ file: SingleReview.jsx:13 ~ hasVoted:", hasVoted);
 
   const voteHandler = (increment) => {
     setActiveVotes((currentVotes) => {
@@ -55,16 +57,20 @@ export default function SingleReview() {
         <button
           type="button"
           onClick={() => {
+            setHasVoted({ up: true, down: false });
             voteHandler(1);
           }}
+          disabled={hasVoted.up}
         >
           Love it!
         </button>
         <button
           type="button"
           onClick={() => {
+            setHasVoted({ up: false, down: true });
             voteHandler(-1);
           }}
+          disabled={hasVoted.down}
         >
           Boooo!
         </button>
