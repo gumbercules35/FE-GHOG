@@ -36,7 +36,7 @@ export default function CommentForm({
       });
   };
   return occurredError ? (
-    <p>oops! Something went wrong</p>
+    <p>Oops! Something went wrong</p>
   ) : (
     <section className="FormContainer">
       <form onSubmit={handleSubmit}>
