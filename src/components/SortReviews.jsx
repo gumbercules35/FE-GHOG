@@ -14,6 +14,7 @@ export default function SortReviews({
     cloneParams.set("sort_by", sortBySelect);
     setSearchParams(cloneParams);
   };
+
   return (
     <section>
       <form onSubmit={submitSort}>
