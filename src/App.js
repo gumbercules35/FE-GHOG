@@ -6,6 +6,7 @@ import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
 import { user } from "./assets/exampleUser";
 import { useState } from "react";
+import CategoryList from "./components/CategoryList";
 function App() {
   const [activeUser, setActiveUser] = useState(user);
 
@@ -20,6 +21,7 @@ function App() {
           path="/reviews/:review_id"
           element={<SingleReview username={activeUser.username} />}
         />
+        <Route path="/categories" element={<CategoryList />} />
       </Routes>
     </div>
   );
