@@ -12,6 +12,7 @@ export default function CommentForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setOccurredError(false);
     const postObj = {
       username: username,
       body: userInput,
@@ -24,8 +25,10 @@ export default function CommentForm({
           return [comment, ...currComments];
         });
         setIsLoading(false);
+        setUserInput("");
       })
       .catch((err) => {
+        setOccurredError(true);
         setActiveComments((currComments) => {
           const commentClone = [...currComments];
           return commentClone.splice(1);
