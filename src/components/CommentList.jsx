@@ -46,7 +46,11 @@ export default function CommentList({ review_id, username }) {
           {activeComments.map((comment) => {
             return (
               <li key={comment.comment_id}>
-                <CommentCard {...comment} />
+                <CommentCard
+                  {...comment}
+                  activeUsername={username}
+                  setActiveComments={setActiveComments}
+                />
               </li>
             );
           })}

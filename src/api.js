@@ -31,3 +31,7 @@ export const postComment = (review_id, postObj) => {
       return data.comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return hogAPI.delete(`/comments/${comment_id}`);
+};
