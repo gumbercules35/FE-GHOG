@@ -34,7 +34,9 @@ export default function CommentForm({
   return (
     <section className="FormContainer">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="commentInput">Comment:</label>
+        <section>
+          <label htmlFor="commentInput">Comment:</label>
+        </section>
         <textarea
           name="comment Input"
           id="commentInput"
@@ -44,7 +46,9 @@ export default function CommentForm({
           }}
           maxLength={75}
         ></textarea>
-        <button type="submit">Post!</button>
+        <section>
+          <button type="submit">Post!</button>
+        </section>
       </form>
     </section>
   );

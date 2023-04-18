@@ -132,6 +132,13 @@ img {
   border: 2px solid green;
 }
 
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: baseline;
+}
+
 @media (min-width: 700px) {
   .CommentCard,
   #CommentBody {
