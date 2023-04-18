@@ -27,7 +27,6 @@ export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
             request: { status },
           },
         }) => {
-          console.log("🚀 ~ file: ReviewList.jsx:23 ~ status:", status);
           setErrorCode(status);
           setOccuredError(true);
           setIsLoading(false);

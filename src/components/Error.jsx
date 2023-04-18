@@ -1,6 +1,4 @@
 export default function Error({ errCode }) {
-  console.log("🚀 ~ file: Error.jsx:2 ~ errCode:", errCode);
-
   switch (errCode) {
     case 400:
       return (
