@@ -8,7 +8,7 @@ import { user } from "./assets/exampleUser";
 import { useState } from "react";
 function App() {
   const [activeUser, setActiveUser] = useState(user);
-  console.log("🚀 ~ file: App.js:11 ~ activeUser:", activeUser);
+
   return (
     <div className="App">
       <Header {...activeUser} />
@@ -16,7 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<ReviewList />} />
         <Route path="/reviews" element={<ReviewList />} />
-        <Route path="/reviews/:review_id" element={<SingleReview />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<SingleReview username={activeUser.username} />}
+        />
       </Routes>
     </div>
   );
