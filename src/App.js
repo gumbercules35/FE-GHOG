@@ -4,10 +4,14 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
+import { user } from "./assets/exampleUser";
+import { useState } from "react";
 function App() {
+  const [activeUser, setActiveUser] = useState(user);
+  console.log("🚀 ~ file: App.js:11 ~ activeUser:", activeUser);
   return (
     <div className="App">
-      <Header />
+      <Header {...activeUser} />
       <Navigation />
       <Routes>
         <Route path="/" element={<ReviewList />} />
