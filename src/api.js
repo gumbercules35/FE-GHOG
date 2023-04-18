@@ -2,10 +2,12 @@ import axios from "axios";
 const hogAPI = axios.create({
   baseURL: "https://gumbercules-hog-api.onrender.com/api",
 });
-export const getReviews = () => {
-  return hogAPI.get("/reviews").then(({ data }) => {
-    return data.reviews;
-  });
+export const getReviews = (category) => {
+  return hogAPI
+    .get("/reviews", { params: { category: category } })
+    .then(({ data }) => {
+      return data.reviews;
+    });
 };
 
 export const getReviewById = (review_id) => {
@@ -34,4 +36,10 @@ export const postComment = (review_id, postObj) => {
 
 export const deleteComment = (comment_id) => {
   return hogAPI.delete(`/comments/${comment_id}`);
+};
+
+export const getCategories = () => {
+  return hogAPI.get("/categories").then(({ data }) => {
+    return data.categories;
+  });
 };

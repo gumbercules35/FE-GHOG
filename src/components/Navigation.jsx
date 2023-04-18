@@ -6,6 +6,9 @@ export default function Navigation() {
       <Link to="/reviews">
         <button type="button">Reviews</button>
       </Link>
+      <Link to="/categories">
+        <button type="button">Categories</button>
+      </Link>
     </div>
   );
 }
