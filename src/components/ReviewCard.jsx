@@ -7,7 +7,11 @@ export default function ReviewCard({
   votes,
   comment_count,
   review_id,
+  created_at,
+  designer,
 }) {
+  const date = new Date(created_at).toLocaleDateString();
+
   return (
     <div className="ReviewCard">
       <Link to={`/reviews/${review_id}`}>
@@ -16,10 +20,15 @@ export default function ReviewCard({
       </Link>
 
       <ul>
+        <li>Designer: {designer}</li>
         <li>Category: {category}</li>
         <li>Author: {owner}</li>
-        <li>{comment_count} Comments</li>
+        <li>
+          {comment_count} Comments{" "}
+          {votes === 1 ? `${votes} Vote` : `${votes} Votes`}
+        </li>
       </ul>
+      <p>Posted on: {date}</p>
     </div>
   );
 }

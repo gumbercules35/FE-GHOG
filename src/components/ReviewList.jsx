@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import * as api from "../api";
 import ReviewCard from "./ReviewCard";
-import { useSearchParams } from "react-router-dom";
 
-export default function ReviewList() {
+export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
   const [reviewList, setReviewList] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+
   const categoryQuery = searchParams.get("category");
+  const orderQuery = searchParams.get("order");
+  const sortQuery = searchParams.get("sort_by");
 
   useEffect(() => {
     setIsLoading(true);
-    api.getReviews(categoryQuery).then((reviews) => {
+    api.getReviews(categoryQuery, orderQuery, sortQuery).then((reviews) => {
       setReviewList(reviews);
       setIsLoading(false);
     });
-  }, [categoryQuery]);
+  }, [categoryQuery, orderQuery, sortQuery]);
   return isLoading ? (
     <p>Loading!</p>
   ) : (
@@ -25,6 +25,7 @@ export default function ReviewList() {
       ) : (
         <h2>Showing All Reviews</h2>
       )}
+
       <ul id="reviewList">
         {reviewList.map((review) => {
           return <ReviewCard key={review.review_id} {...review} />;
