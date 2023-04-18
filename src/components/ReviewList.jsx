@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import * as api from "../api";
 import ReviewCard from "./ReviewCard";
+import Error from "./Error";
 
 export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
   const [reviewList, setReviewList] = useState(null);
   const [occuredError, setOccuredError] = useState(false);
+  const [errorCode, setErrorCode] = useState(0);
 
   const categoryQuery = searchParams.get("category");
   const orderQuery = searchParams.get("order");
@@ -19,13 +21,21 @@ export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
         setReviewList(reviews);
         setIsLoading(false);
       })
-      .catch((err) => {
-        setOccuredError(true);
-        setIsLoading(false);
-      });
+      .catch(
+        ({
+          response: {
+            request: { status },
+          },
+        }) => {
+          console.log("🚀 ~ file: ReviewList.jsx:23 ~ status:", status);
+          setErrorCode(status);
+          setOccuredError(true);
+          setIsLoading(false);
+        }
+      );
   }, [categoryQuery, orderQuery, sortQuery]);
   return occuredError ? (
-    <h2>Ooops, Invalid Query! Please try again</h2>
+    <Error errCode={errorCode} />
   ) : isLoading ? (
     <p>Loading!</p>
   ) : (
