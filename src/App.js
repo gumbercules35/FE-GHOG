@@ -4,15 +4,22 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
+import { user } from "./assets/exampleUser";
+import { useState } from "react";
 function App() {
+  const [activeUser, setActiveUser] = useState(user);
+
   return (
     <div className="App">
-      <Header />
+      <Header {...activeUser} />
       <Navigation />
       <Routes>
         <Route path="/" element={<ReviewList />} />
         <Route path="/reviews" element={<ReviewList />} />
-        <Route path="/reviews/:review_id" element={<SingleReview />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<SingleReview username={activeUser.username} />}
+        />
       </Routes>
     </div>
   );

@@ -3,14 +3,13 @@ import * as api from "../api";
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 
-export default function SingleReview() {
+export default function SingleReview({ username }) {
   const { review_id } = useParams();
   const [activeReview, setActiveReview] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
   const [activeVotes, setActiveVotes] = useState(null);
   const [hasVoted, setHasVoted] = useState({ up: false, down: false });
-  console.log("🚀 ~ file: SingleReview.jsx:13 ~ hasVoted:", hasVoted);
 
   const voteHandler = (increment) => {
     setActiveVotes((currentVotes) => {
@@ -78,7 +77,7 @@ export default function SingleReview() {
         <p>Votes:{activeVotes}</p>
       </section>
 
-      <CommentList review_id={activeReview.review_id} />
+      <CommentList review_id={activeReview.review_id} username={username} />
     </main>
   );
 }

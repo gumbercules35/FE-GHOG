@@ -18,8 +18,14 @@ img {
 }
 
 .Header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 10px;
+  padding: 5px;
+  width: 95vw;
   border: 2px solid red;
-  align-self: center;
 }
 
 .Nav {
@@ -110,6 +116,29 @@ img {
   padding: 2px;
   margin: 2px;
 }
+
+.UserPlaqueContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+  border: 1px solid grey;
+}
+#UserPlaqueImg {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid green;
+}
+
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: baseline;
+}
+
 @media (min-width: 700px) {
   .CommentCard,
   #CommentBody {

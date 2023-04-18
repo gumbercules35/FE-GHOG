@@ -23,3 +23,11 @@ export const getComments = (review_id) => {
 export const patchReviewVotes = (review_id, increment) => {
   return hogAPI.patch(`/reviews/${review_id}`, { inc_votes: increment });
 };
+
+export const postComment = (review_id, postObj) => {
+  return hogAPI
+    .post(`/reviews/${review_id}/comments`, postObj)
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
