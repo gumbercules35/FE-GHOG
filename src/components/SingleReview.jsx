@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import * as api from "../api";
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
+import Error from "./Error";
 
 export default function SingleReview({ username }) {
   const { review_id } = useParams();
@@ -10,6 +11,7 @@ export default function SingleReview({ username }) {
   const [occurredError, setOccurredError] = useState(false);
   const [activeVotes, setActiveVotes] = useState(null);
   const [hasVoted, setHasVoted] = useState({ up: false, down: false });
+  const [errorCode, setErrorCode] = useState(0);
 
   const voteHandler = (increment) => {
     setActiveVotes((currentVotes) => {
@@ -32,13 +34,20 @@ export default function SingleReview({ username }) {
         setActiveVotes(review.votes);
         setIsLoading(false);
       })
-      .catch((err) => {
-        setOccurredError(true);
-        setHasVoted({ up: false, down: false });
-      });
+      .catch(
+        ({
+          response: {
+            request: { status },
+          },
+        }) => {
+          setErrorCode(status);
+          setOccurredError(true);
+          setHasVoted({ up: false, down: false });
+        }
+      );
   }, [review_id]);
   return occurredError ? (
-    <p>oops! Something Went Wrong</p>
+    <Error errCode={errorCode} />
   ) : isLoading ? (
     <p>Loading!</p>
   ) : (
