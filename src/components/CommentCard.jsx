@@ -18,19 +18,25 @@ export default function CommentCard({
   const handleDelete = () => {
     setIsDisabled(true);
     setOccurredError(false);
-    setActiveComments((currComments) => {
-      const clone = [...currComments];
-      return clone.filter((comment) => {
-        return comment.comment_id !== comment_id;
+
+    api
+      .deleteComment(comment_id)
+      .then(() => {
+        setActiveComments((currComments) => {
+          const clone = [...currComments];
+          return clone.filter((comment) => {
+            return comment.comment_id !== comment_id;
+          });
+        });
+      })
+      .catch((err) => {
+        setOccurredError(true);
+        setIsDisabled(false);
+        setDeleteCheck(false);
       });
-    });
-    api.deleteComment(comment_id).catch((err) => {
-      setOccurredError(true);
-      setIsDisabled(false);
-    });
   };
   return (
-    <section className="CommentCard">
+    <section className={occurredError ? "ErroredComponent" : "CommentCard"}>
       <section id="CommentHeader">
         <h4>
           Username: <br />
@@ -42,21 +48,30 @@ export default function CommentCard({
           {date}
         </p>
       </section>
-      <section id="CommentBody">
-        <p>{body}</p>
-      </section>
+      {isDisabled ? (
+        <h5>Deleting Comment</h5>
+      ) : (
+        <section id="CommentBody">
+          <p>{body}</p>
+        </section>
+      )}
       <section id="CommentFooter">
         <p>Votes: {votes}</p>
         {author === activeUsername && !deleteCheck ? (
-          <button
-            type="button"
-            onClick={() => {
-              setDeleteCheck(true);
-            }}
-            disabled={isDisabled}
-          >
-            Delete
-          </button>
+          <section>
+            {occurredError ? (
+              <p>Something went wrong, please try again!</p>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => {
+                setDeleteCheck(true);
+              }}
+              disabled={isDisabled}
+            >
+              Delete
+            </button>
+          </section>
         ) : null}
         {deleteCheck ? (
           <section>

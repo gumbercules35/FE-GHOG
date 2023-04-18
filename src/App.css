@@ -139,6 +139,10 @@ img {
   align-content: baseline;
 }
 
+.ErroredComponent {
+  border: 3px solid red;
+}
+
 @media (min-width: 700px) {
   .CommentCard,
   #CommentBody {
