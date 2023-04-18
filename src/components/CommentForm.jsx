@@ -8,6 +8,7 @@ export default function CommentForm({
   review_id,
 }) {
   const [userInput, setUserInput] = useState("");
+  const [occurredError, setOccurredError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +32,9 @@ export default function CommentForm({
         });
       });
   };
-  return (
+  return occurredError ? (
+    <p>oops! Something went wrong</p>
+  ) : (
     <section className="FormContainer">
       <form onSubmit={handleSubmit}>
         <section>
@@ -47,7 +50,9 @@ export default function CommentForm({
           maxLength={75}
         ></textarea>
         <section>
-          <button type="submit">Post!</button>
+          <button type="submit" disabled={IsLoading}>
+            Post!
+          </button>
         </section>
       </form>
     </section>
