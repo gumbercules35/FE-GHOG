@@ -156,6 +156,74 @@ img {
   border: 2px solid blue;
 }
 
+.tw-toggle {
+  /* background: #95A5A6; */
+  display: inline-block;
+  padding: 2px 3px;
+  border-radius: 20px;
+  position: relative;
+  border: 2px solid #95a5a6;
+}
+
+.tw-toggle label {
+  text-align: center;
+  font-family: sans-serif;
+  display: inline-block;
+  color: #95a5a6;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  padding: 2px 3px;
+  font-size: 15px;
+  /* cursor: pointer; */
+}
+
+.tw-toggle input {
+  /* display: none; */
+  padding: 50px;
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.tw-toggle span {
+  height: 21px;
+  width: 21px;
+  line-height: 21px;
+  border-radius: 50%;
+  background: #fff;
+  display: block;
+  position: absolute;
+  left: 22px;
+  top: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tw-toggle input[value="-1"]:checked ~ span {
+  background: #e74c3c;
+  left: 2px;
+  color: #fff;
+}
+
+.tw-toggle input[value="1"]:checked ~ span {
+  background: #27ae60;
+  left: 40px;
+}
+.tw-toggle input[value="0"]:checked ~ span {
+  background: #95a5a6;
+  left: 21px;
+}
+
+.tw-toggle input[value="1"]:checked + label,
+.tw-toggle input[value="-1"]:checked + label {
+  color: #fff;
+}
+.tw-toggle input[value="0"]:checked + label {
+  color: #fff;
+}
+
 @media (min-width: 700px) {
   .CommentCard,
   #CommentBody {
