@@ -4,6 +4,7 @@ export default function SortReviews({
   setSearchParams,
   setIsLoading,
   searchParams,
+  setPage,
 }) {
   const [sortOrderSelect, setSortOrderSelect] = useState("desc");
   const [sortBySelect, setSortBySelect] = useState("created_at");
@@ -13,6 +14,7 @@ export default function SortReviews({
     cloneParams.set("order", sortOrderSelect);
     cloneParams.set("sort_by", sortBySelect);
     setSearchParams(cloneParams);
+    setPage(1);
   };
 
   return (

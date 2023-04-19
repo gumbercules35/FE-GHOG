@@ -3,11 +3,17 @@ import * as api from "../api";
 import ReviewCard from "./ReviewCard";
 import Error from "./Error";
 
-export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
+export default function ReviewList({
+  isLoading,
+  setIsLoading,
+  searchParams,
+  page,
+  setPage,
+}) {
   const [reviewList, setReviewList] = useState([]);
   const [occuredError, setOccuredError] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
-  const [page, setPage] = useState(1);
+
   const [totalCount, setTotalCount] = useState(0);
 
   const categoryQuery = searchParams.get("category");
