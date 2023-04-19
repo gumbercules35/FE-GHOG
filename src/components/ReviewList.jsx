@@ -4,9 +4,11 @@ import ReviewCard from "./ReviewCard";
 import Error from "./Error";
 
 export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
-  const [reviewList, setReviewList] = useState(null);
+  const [reviewList, setReviewList] = useState([]);
   const [occuredError, setOccuredError] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
 
   const categoryQuery = searchParams.get("category");
   const orderQuery = searchParams.get("order");
@@ -16,9 +18,10 @@ export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
     setOccuredError(false);
     setIsLoading(true);
     api
-      .getReviews(categoryQuery, orderQuery, sortQuery)
-      .then((reviews) => {
+      .getReviews(categoryQuery, orderQuery, sortQuery, page)
+      .then(({ reviews, total_count }) => {
         setReviewList(reviews);
+        setTotalCount(total_count);
         setIsLoading(false);
       })
       .catch(
@@ -30,9 +33,10 @@ export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
           setErrorCode(status);
           setOccuredError(true);
           setIsLoading(false);
+          setTotalCount(0);
         }
       );
-  }, [categoryQuery, orderQuery, sortQuery]);
+  }, [categoryQuery, orderQuery, sortQuery, page]);
   return occuredError ? (
     <Error errCode={errorCode} />
   ) : isLoading ? (
@@ -50,6 +54,36 @@ export default function ReviewList({ isLoading, setIsLoading, searchParams }) {
           return <ReviewCard key={review.review_id} {...review} />;
         })}
       </ul>
+      <h4>
+        Page {page} of {Math.ceil(totalCount / 10)}
+      </h4>
+      <section className="Paginate">
+        {" "}
+        {page === 1 ? null : (
+          <button
+            disabled={page === 1}
+            onClick={() => {
+              setPage((currentPage) => {
+                return currentPage - 1;
+              });
+            }}
+          >
+            <i className="fa fa-arrow-left"></i>
+          </button>
+        )}
+        {10 * page >= totalCount ? null : (
+          <button
+            disabled={10 * page >= totalCount}
+            onClick={() => {
+              setPage((currentPage) => {
+                return currentPage + 1;
+              });
+            }}
+          >
+            <i className="fa fa-arrow-right"></i>
+          </button>
+        )}
+      </section>
     </main>
   );
 }

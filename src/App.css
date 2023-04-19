@@ -224,6 +224,11 @@ img {
   color: #fff;
 }
 
+.Paginate {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (min-width: 700px) {
   .CommentCard,
   #CommentBody {
