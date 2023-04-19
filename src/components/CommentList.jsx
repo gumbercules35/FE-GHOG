@@ -4,7 +4,7 @@ import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
 export default function CommentList({ review_id, username }) {
-  const [activeComments, setActiveComments] = useState(null);
+  const [activeComments, setActiveComments] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
@@ -16,6 +16,7 @@ export default function CommentList({ review_id, username }) {
       .getComments(review_id)
       .then((comments) => {
         setActiveComments(comments);
+
         setIsLoading(false);
       })
       .catch((error) => {
