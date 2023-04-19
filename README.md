@@ -34,6 +34,10 @@ Users can currently:
 
 ## Planned Features
 
+- A full list of users, and navigation embedded into usernames as they appear on the site to take the user to the specific profile of other users
+- The ability to post your own Reviews
+- Pagination of data
+
 ## Install Guide
 
 **_Please note this repo requires Node v19.7.0 to run locally_**
