@@ -7,6 +7,7 @@ import Error from "./Error";
 export default function SingleReview({ username }) {
   const { review_id } = useParams();
   const [activeReview, setActiveReview] = useState(null);
+  console.log("🚀 ~ file: SingleReview.jsx:10 ~ activeReview:", activeReview);
   const [isLoading, setIsLoading] = useState(true);
   const [occurredError, setOccurredError] = useState(false);
   const [activeVotes, setActiveVotes] = useState(null);
