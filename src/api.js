@@ -2,10 +2,16 @@ import axios from "axios";
 const hogAPI = axios.create({
   baseURL: "https://gumbercules-hog-api.onrender.com/api",
 });
-export const getReviews = (category, order, sort_by, page) => {
+export const getReviews = (category, order, sort_by, page, limit) => {
   return hogAPI
     .get("/reviews", {
-      params: { category: category, sort_by: sort_by, order: order, p: page },
+      params: {
+        category: category,
+        sort_by: sort_by,
+        order: order,
+        p: page,
+        limit: limit,
+      },
     })
     .then(({ data }) => {
       return data;

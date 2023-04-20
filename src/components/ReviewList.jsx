@@ -8,9 +8,9 @@ export default function ReviewList({
   setIsLoading,
   searchParams,
   page,
-  setPage,
   totalCount,
   setTotalCount,
+  limit,
 }) {
   const [reviewList, setReviewList] = useState([]);
   const [occuredError, setOccuredError] = useState(false);
@@ -24,7 +24,7 @@ export default function ReviewList({
     setOccuredError(false);
     setIsLoading(true);
     api
-      .getReviews(categoryQuery, orderQuery, sortQuery, page)
+      .getReviews(categoryQuery, orderQuery, sortQuery, page, limit)
       .then(({ reviews, total_count }) => {
         setReviewList(reviews);
         setTotalCount(total_count);
@@ -42,7 +42,7 @@ export default function ReviewList({
           setTotalCount(0);
         }
       );
-  }, [categoryQuery, orderQuery, sortQuery, page]);
+  }, [categoryQuery, orderQuery, sortQuery, page, limit]);
   return occuredError ? (
     <Error errCode={errorCode} />
   ) : isLoading ? (
@@ -50,9 +50,17 @@ export default function ReviewList({
   ) : (
     <main className="Content">
       {categoryQuery ? (
-        <h2>Showing {categoryQuery} Reviews</h2>
+        <h2>
+          Showing {limit * (page - 1) + 1}-
+          {limit * page >= totalCount ? totalCount : limit * page}
+          &nbsp;of All {categoryQuery} Reviews
+        </h2>
       ) : (
-        <h2>Showing All Reviews</h2>
+        <h2>
+          Showing {limit * (page - 1) + 1}-
+          {limit * page >= totalCount ? totalCount : limit * page} of All{" "}
+          {totalCount} Reviews
+        </h2>
       )}
 
       <ul id="reviewList">

@@ -1,8 +1,8 @@
-export default function Paginate({ page, setPage, totalCount }) {
+export default function Paginate({ page, setPage, totalCount, limit }) {
   return (
     <section className="Paginate">
       <h4>
-        Page {page} of {Math.ceil(totalCount / 10)}
+        Page {page} of {Math.ceil(totalCount / limit)}
       </h4>
       {page === 1 ? null : (
         <button
@@ -16,9 +16,9 @@ export default function Paginate({ page, setPage, totalCount }) {
           <i className="fa fa-arrow-left"></i>
         </button>
       )}
-      {10 * page >= totalCount ? null : (
+      {limit * page >= totalCount ? null : (
         <button
-          disabled={10 * page >= totalCount}
+          disabled={limit * page >= totalCount}
           onClick={() => {
             setPage((currentPage) => {
               return currentPage + 1;
