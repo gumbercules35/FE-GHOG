@@ -4,7 +4,6 @@ import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
 export default function CommentList({ review_id, username }) {
-  console.log("🚀 ~ file: CommentList.jsx:7 ~ username:", username);
   const [activeComments, setActiveComments] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);

@@ -16,7 +16,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header activeUser={activeUser ? { ...activeUser } : null} />
+      <Header
+        activeUser={activeUser ? { ...activeUser } : null}
+        setActiveUser={setActiveUser}
+      />
       <Navigation />
       <Routes>
         <Route path="/" element={<ReviewsView />} />
