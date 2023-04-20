@@ -22,7 +22,7 @@ export default function UsersList({ activeUser, setActiveUser }) {
   ) : (
     <main className="Content">
       <h2>UserList</h2>
-      <ul id="reviewList">
+      <ul id="userList">
         {userList.map((user) => {
           return (
             <li

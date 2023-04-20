@@ -19,7 +19,7 @@ export default function ReviewsView() {
         setPage={setPage}
         setLimit={setLimit}
       />
-      <Link to="/reviews/post">
+      <Link to="/reviews/post" className="PostButton">
         <button type="button">Post A Review?</button>
       </Link>
       <ReviewList
