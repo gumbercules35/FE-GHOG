@@ -20,6 +20,8 @@ Users can currently:
 
   - This sort can be applied Ascending or Descending at the users choice
 
+  - Reviews are paginated to 10 per page, navigation can be found at the bottom of the review list
+
 - By clicking a Review's image or title the user will be taken to and expanded view of that Review
 
   - This page contains more detailed information on the Review, including the body and the comments associated to that Review
@@ -27,16 +29,16 @@ Users can currently:
 
 - Users can view a list of all categories with their descriptions from the API, with each category name being a link to a filtered view of the Reviews page showing only those Reviews associated with that category
 
-- A User (grumpy19) is currently hard-coded to be "logged-in"
+- Users can view a full list of all Users, and click usernames where referenced to view that users profile
 
-  - As this user, comments can be left using the submission form above the list of comments (75 Character Max, No empty posts)
+- A Specific User can be "Mimicked" allowing the site to be interacted with as different Users
+
+  - As this specific user, comments can be left using the submission form above the list of comments (Note: A User must be mimicked to allow this functionality, 75 Character Max, No empty posts)
   - The user is able to delete their own comments from a Review
 
 ## Planned Features
 
-- A full list of users, and navigation embedded into usernames as they appear on the site to take the user to the specific profile of other users
 - The ability to post your own Reviews
-- Pagination of data
 
 ## Install Guide
 
