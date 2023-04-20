@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as api from "../api";
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
@@ -78,7 +78,10 @@ export default function SingleReview({ username }) {
       </ul>
 
       <img src={activeReview.review_img_url} alt="User Defined Decorative" />
-      <h3>A review by: {activeReview.owner}</h3>
+      <h3>
+        A review by:{" "}
+        <Link to={`/users/${activeReview.owner}`}>{activeReview.owner}</Link>
+      </h3>
 
       <p id="ReviewBody">{activeReview.review_body}</p>
 

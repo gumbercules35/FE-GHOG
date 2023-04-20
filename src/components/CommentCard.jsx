@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as api from "../api";
+import { Link } from "react-router-dom";
 
 export default function CommentCard({
   author,
@@ -40,7 +41,7 @@ export default function CommentCard({
       <section id="CommentHeader">
         <h4>
           Username: <br />
-          {author}
+          <Link to={`/users/${author}`}>{author}</Link>
         </h4>
         <p>
           Comment Left:

@@ -22,7 +22,10 @@ export default function ReviewCard({
       <ul>
         <li>Designer: {designer}</li>
         <li>Category: {category}</li>
-        <li>Author: {owner}</li>
+        <li>
+          Author:
+          <Link to={`/users/${owner}`}>{owner}</Link>
+        </li>
         <li>
           {comment_count} Comments{" "}
           {votes === 1 ? `${votes} Vote` : `${votes} Votes`}

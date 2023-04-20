@@ -8,12 +8,18 @@ export default function UsersList({ activeUser, setActiveUser }) {
 
   useEffect(() => {
     setIsLoading(true);
-    api.getUsers().then((users) => {
-      setUserList(users);
-      setIsLoading(false);
-    });
+    api
+      .getUsers()
+      .then((users) => {
+        setUserList(users);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
   }, []);
-  return (
+  return isLoading ? (
+    <h2>Loading Users Please Wait</h2>
+  ) : (
     <main className="Content">
       <h2>UserList</h2>
       <ul id="reviewList">

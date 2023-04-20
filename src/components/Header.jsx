@@ -8,7 +8,7 @@ export default function Header({ activeUser, setActiveUser }) {
         <UserPlaque {...activeUser} setActiveUser={setActiveUser} />
       ) : (
         <Link to="/users">
-          <p>Click Here To Pick a User</p>
+          <p>Pick a User From User List</p>
         </Link>
       )}
       <Link to="/" id="HeaderText">

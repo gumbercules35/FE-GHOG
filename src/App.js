@@ -10,6 +10,7 @@ import CategoryList from "./components/CategoryList";
 import Error from "./components/Error";
 import ReviewsView from "./components/ReviewsView";
 import UsersList from "./components/UsersList";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [activeUser, setActiveUser] = useState(null);
@@ -35,6 +36,7 @@ function App() {
             <UsersList activeUser={activeUser} setActiveUser={setActiveUser} />
           }
         />
+        <Route path="/users/:username" element={<UserProfile />} />
         <Route path="*" element={<Error errCode={404} />} />
       </Routes>
     </div>

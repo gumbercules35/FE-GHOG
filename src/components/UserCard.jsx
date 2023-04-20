@@ -1,8 +1,15 @@
+import { Link } from "react-router-dom";
 export default function UserCard({ user, activeUser, setActiveUser }) {
   return (
     <section className="UserPlaqueContainer">
-      <img src={user.avatar_url} alt="user avatar" id="UserListImg" />
-      <h3>{user.username}</h3>
+      <Link to={`/users/${user.username}`}>
+        <img
+          src={user.avatar_url}
+          alt={`user ${user.username} avatar`}
+          id="UserListImg"
+        />
+        <h3>{user.username}</h3>
+      </Link>
       {user.username === activeUser?.username ? (
         <button
           type="button"
