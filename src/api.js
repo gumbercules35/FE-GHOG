@@ -45,3 +45,15 @@ export const getCategories = () => {
     return data.categories;
   });
 };
+
+export const getUsers = () => {
+  return hogAPI.get("/users").then(({ data }) => {
+    return data.users;
+  });
+};
+
+export const getUserByUsername = (username) => {
+  return hogAPI.get(`/users/${username}`).then(({ data }) => {
+    return data.user;
+  });
+};
