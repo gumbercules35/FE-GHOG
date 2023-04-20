@@ -9,6 +9,7 @@ export default function ReviewsView() {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
+  const [limit, setLimit] = useState(12);
   return (
     <section className="Content">
       <SortReviews
@@ -16,6 +17,7 @@ export default function ReviewsView() {
         setIsLoading={setIsLoading}
         searchParams={searchParams}
         setPage={setPage}
+        setLimit={setLimit}
       />
       <Link to="/reviews/post">
         <button type="button">Post A Review?</button>
@@ -25,11 +27,16 @@ export default function ReviewsView() {
         setIsLoading={setIsLoading}
         searchParams={searchParams}
         page={page}
-        setPage={setPage}
         totalCount={totalCount}
         setTotalCount={setTotalCount}
+        limit={limit}
       />
-      <Paginate page={page} setPage={setPage} totalCount={totalCount} />
+      <Paginate
+        page={page}
+        setPage={setPage}
+        totalCount={totalCount}
+        limit={limit}
+      />
     </section>
   );
 }
