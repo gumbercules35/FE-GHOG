@@ -4,26 +4,37 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 
 import SingleReview from "./components/SingleReview";
-import { user } from "./assets/exampleUser";
+
 import { useState } from "react";
 import CategoryList from "./components/CategoryList";
 import Error from "./components/Error";
 import ReviewsView from "./components/ReviewsView";
+import UsersList from "./components/UsersList";
+
 function App() {
-  const [activeUser, setActiveUser] = useState(user);
+  const [activeUser, setActiveUser] = useState(null);
 
   return (
     <div className="App">
-      <Header {...activeUser} />
+      <Header
+        activeUser={activeUser ? { ...activeUser } : null}
+        setActiveUser={setActiveUser}
+      />
       <Navigation />
       <Routes>
         <Route path="/" element={<ReviewsView />} />
         <Route path="/reviews" element={<ReviewsView />} />
         <Route
           path="/reviews/:review_id"
-          element={<SingleReview username={activeUser.username} />}
+          element={<SingleReview username={activeUser?.username} />}
         />
         <Route path="/categories" element={<CategoryList />} />
+        <Route
+          path="/users"
+          element={
+            <UsersList activeUser={activeUser} setActiveUser={setActiveUser} />
+          }
+        />
         <Route path="*" element={<Error errCode={404} />} />
       </Routes>
     </div>

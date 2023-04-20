@@ -30,13 +30,17 @@ export default function CommentList({ review_id, username }) {
     <p>Loading Comments!</p>
   ) : (
     <section className="CommentContainer">
-      <CommentForm
-        username={username}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        setActiveComments={setActiveComments}
-        review_id={review_id}
-      />
+      {username ? (
+        <CommentForm
+          username={username}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          setActiveComments={setActiveComments}
+          review_id={review_id}
+        />
+      ) : (
+        <h3>Please Mimic a User To Post Comments</h3>
+      )}
       <section className="CommentList">
         {activeComments.length > 0 ? (
           <h3>Showing {activeComments.length} Comments on this review</h3>

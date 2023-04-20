@@ -9,12 +9,12 @@ export default function ReviewList({
   searchParams,
   page,
   setPage,
+  totalCount,
+  setTotalCount,
 }) {
   const [reviewList, setReviewList] = useState([]);
   const [occuredError, setOccuredError] = useState(false);
   const [errorCode, setErrorCode] = useState(0);
-
-  const [totalCount, setTotalCount] = useState(0);
 
   const categoryQuery = searchParams.get("category");
   const orderQuery = searchParams.get("order");
@@ -60,36 +60,6 @@ export default function ReviewList({
           return <ReviewCard key={review.review_id} {...review} />;
         })}
       </ul>
-      <h4>
-        Page {page} of {Math.ceil(totalCount / 10)}
-      </h4>
-      <section className="Paginate">
-        {" "}
-        {page === 1 ? null : (
-          <button
-            disabled={page === 1}
-            onClick={() => {
-              setPage((currentPage) => {
-                return currentPage - 1;
-              });
-            }}
-          >
-            <i className="fa fa-arrow-left"></i>
-          </button>
-        )}
-        {10 * page >= totalCount ? null : (
-          <button
-            disabled={10 * page >= totalCount}
-            onClick={() => {
-              setPage((currentPage) => {
-                return currentPage + 1;
-              });
-            }}
-          >
-            <i className="fa fa-arrow-right"></i>
-          </button>
-        )}
-      </section>
     </main>
   );
 }
