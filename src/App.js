@@ -11,6 +11,7 @@ import Error from "./components/Error";
 import ReviewsView from "./components/ReviewsView";
 import UsersList from "./components/UsersList";
 import UserProfile from "./components/UserProfile";
+import ReviewForm from "./components/ReviewForm";
 
 function App() {
   const [activeUser, setActiveUser] = useState(null);
@@ -25,6 +26,17 @@ function App() {
       <Routes>
         <Route path="/" element={<ReviewsView />} />
         <Route path="/reviews" element={<ReviewsView />} />
+        <Route
+          exact
+          path="/reviews/post"
+          element={
+            activeUser ? (
+              <ReviewForm username={activeUser?.username} />
+            ) : (
+              <h2>Please Mimic a User First</h2>
+            )
+          }
+        />
         <Route
           path="/reviews/:review_id"
           element={<SingleReview username={activeUser?.username} />}

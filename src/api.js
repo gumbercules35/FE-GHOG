@@ -57,3 +57,9 @@ export const getUserByUsername = (username) => {
     return data.user;
   });
 };
+
+export const postReview = (postObj) => {
+  return hogAPI.post("/reviews", postObj).then(({ data }) => {
+    return data.review;
+  });
+};
