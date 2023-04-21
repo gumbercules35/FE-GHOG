@@ -23,7 +23,6 @@ export default function SingleReview({ username }) {
     neutral: 0,
     down: -1,
   });
-
   const voteHandler = (increment) => {
     if (increment !== 0) {
       setActiveVotes((currentVotes) => {
@@ -36,9 +35,11 @@ export default function SingleReview({ username }) {
       });
     } else {
       if (hasVoted.up) {
-        voteHandler(1);
-      } else if (hasVoted.down) {
         voteHandler(-1);
+        setHasVoted({ up: false, neutral: true, down: false });
+      } else if (hasVoted.down) {
+        voteHandler(1);
+        setHasVoted({ up: false, neutral: true, down: false });
       }
     }
   };
@@ -48,9 +49,12 @@ export default function SingleReview({ username }) {
     setIsLoading(true);
     api
       .getReviewById(review_id)
-      .then((review) => {
-        setActiveReview(review);
-        setActiveVotes(review.votes);
+      .then(({ created_at, ...restOfReview }) => {
+        setActiveReview(() => {
+          const date = new Date(created_at).toDateString();
+          return { created_at: date, ...restOfReview };
+        });
+        setActiveVotes(restOfReview.votes);
         setIsLoading(false);
       })
       .catch(
@@ -85,18 +89,21 @@ export default function SingleReview({ username }) {
 
       <p id="ReviewBody">{activeReview.review_body}</p>
 
-      <div className="tw-toggle">
+      <section className="VoteRadio">
+        <label className={`toggle${hasVoted.down ? "activeDown" : ""}`}>
+          Down Vote
+        </label>
         <input
           type="radio"
           name="toggle"
           value={voteValues.down}
           onChange={() => {
-            setHasVoted({ up: true, neutral: false, down: false });
+            setHasVoted({ up: false, neutral: false, down: true });
             voteHandler(voteValues.down);
           }}
         />
-        <label className="toggle toggle-yes">
-          <i className="fa fa-arrow-down"></i>
+        <label className={`toggle${hasVoted.neutral ? "activeNeut" : ""}`}>
+          Neutral
         </label>
         <input
           defaultChecked
@@ -114,24 +121,22 @@ export default function SingleReview({ username }) {
             voteHandler(voteValues.neutral);
           }}
         />
-        <label className="toggle toggle-yes">
-          <i className="fa fa-minus"></i>
+        <label className={`toggle${hasVoted.up ? "activeUp" : ""}`}>
+          UpVote
         </label>
         <input
           type="radio"
           name="toggle"
           value={voteValues.up}
           onChange={() => {
-            setHasVoted({ up: false, neutral: false, down: true });
+            setHasVoted({ up: true, neutral: false, down: false });
             voteHandler(voteValues.up);
           }}
         />
-        <label className="toggle toggle-yes">
-          <i className="fa fa-arrow-up"></i>
-        </label>
+
         <span></span>
         <p>Votes:{activeVotes}</p>
-      </div>
+      </section>
 
       <CommentList review_id={activeReview.review_id} username={username} />
     </main>

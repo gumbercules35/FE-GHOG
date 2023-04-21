@@ -3,6 +3,7 @@
   margin: 0px;
   box-sizing: content-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
 }
 ul {
   list-style: none;
@@ -15,6 +16,7 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 0.7rem;
 }
 
 .Header {
@@ -45,6 +47,7 @@ img {
   font-size: small;
 }
 .ReviewCard {
+  border-radius: 10%;
   border: 2px solid green;
   padding: 5px;
   margin: 2px;
@@ -84,9 +87,11 @@ img {
   text-align: left;
 }
 .CommentCard {
+  border-radius: 10%;
   border: 2px solid green;
   padding: 10px;
   display: flex;
+  row-gap: 0.2rem;
   flex-direction: column;
   font-size: smaller;
 }
@@ -94,7 +99,7 @@ img {
 #CommentHeader {
   flex: 25%;
   display: flex;
-
+  font-size: 0.7rem;
   flex-direction: row;
   align-items: baseline;
   justify-content: space-evenly;
@@ -105,27 +110,17 @@ img {
 }
 #CommentBody {
   flex: 50%;
-  font-size: smaller;
+  font-size: 1rem;
   padding: 2px;
-}
-#VotingButtonBar {
-  margin: 2px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: flex-start;
-}
-#VotingButtonBar button {
-  padding: 2px;
-  margin: 2px;
 }
 
 .UserPlaqueContainer {
+  border-radius: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: x-small;
+  font-size: 0.7rem;
 
   border: 1px solid grey;
 }
@@ -186,75 +181,23 @@ img {
   align-items: center;
   border: 2px solid blue;
 }
-
-.tw-toggle {
-  /* background: #95A5A6; */
-  display: inline-block;
-  padding: 2px 3px;
-  border-radius: 20px;
-  position: relative;
-  border: 2px solid #95a5a6;
+.VoteRadio {
+  display: flex;
+  flex-direction: column-reverse;
+  row-gap: 5px;
 }
-
-.tw-toggle label {
-  text-align: center;
-  font-family: sans-serif;
-  display: inline-block;
-  color: #95a5a6;
-  position: relative;
-  z-index: 2;
-  margin: 0;
-  text-align: center;
-  padding: 2px 3px;
-  font-size: 15px;
-  /* cursor: pointer; */
+.toggleactiveUp {
+  color: green;
+  border: 2px solid green;
 }
-
-.tw-toggle input {
-  /* display: none; */
-  padding: 50px;
-  position: absolute;
-  z-index: 3;
-  opacity: 0;
-  cursor: pointer;
+.toggleactiveNeut {
+  color: black;
+  border: 2px solid black;
 }
-
-.tw-toggle span {
-  height: 21px;
-  width: 21px;
-  line-height: 21px;
-  border-radius: 50%;
-  background: #fff;
-  display: block;
-  position: absolute;
-  left: 22px;
-  top: 2px;
-  transition: all 0.3s ease-in-out;
+.toggleactiveDown {
+  color: orangered;
+  border: 2px solid orangered;
 }
-
-.tw-toggle input[value="-1"]:checked ~ span {
-  background: #e74c3c;
-  left: 2px;
-  color: #fff;
-}
-
-.tw-toggle input[value="1"]:checked ~ span {
-  background: #27ae60;
-  left: 40px;
-}
-.tw-toggle input[value="0"]:checked ~ span {
-  background: #95a5a6;
-  left: 21px;
-}
-
-.tw-toggle input[value="1"]:checked + label,
-.tw-toggle input[value="-1"]:checked + label {
-  color: #fff;
-}
-.tw-toggle input[value="0"]:checked + label {
-  color: #fff;
-}
-
 .Paginate {
   display: flex;
   flex-direction: row;
